@@ -64,43 +64,6 @@ const scrollObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('[data-scroll]').forEach(el => scrollObserver.observe(el));
 
-const BUBBLE_GRADIENTS = [
-    'radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(126, 200, 227, 0.85) 45%, rgba(68, 166, 212, 0.95) 100%)',
-    'radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(181, 229, 207, 0.85) 45%, rgba(110, 200, 165, 0.95) 100%)',
-    'radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(195, 215, 250, 0.85) 45%, rgba(135, 175, 240, 0.95) 100%)',
-    'radial-gradient(circle at 35% 30%, #ffffff 0%, rgba(150, 225, 235, 0.85) 45%, rgba(70, 190, 215, 0.95) 100%)'
-];
-
-document.addEventListener('pointerdown', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
-    const count = 7;
-    for (let i = 0; i < count; i++) {
-        const b = document.createElement('div');
-        b.className = 'bubble';
-        const size = Math.random() * 16 + 14;
-        const tx = (Math.random() - 0.5) * 80;
-        const ty = -(Math.random() * 55 + 45);
-        const delay = Math.random() * 0.1;
-        const duration = 0.75 + Math.random() * 0.35;
-        b.style.cssText = [
-            `width:${size}px`,
-            `height:${size}px`,
-            `left:${x - size / 2}px`,
-            `top:${y - size / 2}px`,
-            `background:${BUBBLE_GRADIENTS[Math.floor(Math.random() * BUBBLE_GRADIENTS.length)]}`,
-            `--tx:${tx}px`,
-            `--ty:${ty}px`,
-            `animation-delay:${delay}s`,
-            `animation-duration:${duration}s`
-        ].join(';');
-        document.body.appendChild(b);
-        b.addEventListener('animationend', () => b.remove());
-        setTimeout(() => b.remove(), (delay + duration) * 1000 + 200);
-    }
-});
-
-
 const tagline = document.querySelector('.hero-tagline');
 if (tagline) {
     const text = tagline.dataset[currentLang] || tagline.textContent.trim();
