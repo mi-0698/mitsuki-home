@@ -112,7 +112,7 @@ for (let i = 0; i < ambientCount; i++) {
 document.addEventListener('pointerdown', (e) => {
     const ripple = document.createElement('div');
     ripple.className = 'water-ripple';
-    const rippleSize = Math.random() * 20 + 60;
+    const rippleSize = Math.random() * 30 + 175;
     ripple.style.cssText = [
         `width:${rippleSize}px`,
         `height:${rippleSize}px`,
@@ -120,40 +120,27 @@ document.addEventListener('pointerdown', (e) => {
         `top:${e.clientY}px`
     ].join(';');
     document.body.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 800);
+    setTimeout(() => ripple.remove(), 900);
 
-    const bubbleCount = Math.random() < 0.4 ? 2 : 1;
+    const bubbleCount = Math.random() < 0.35 ? 2 : 1;
     for (let i = 0; i < bubbleCount; i++) {
         const b = document.createElement('div');
         b.className = 'soap-bubble';
-        const size = Math.random() * 18 + 32;
-        const stagger = i * 0.12;
-        const dx1 = (Math.random() - 0.5) * 16;
-        const dx2 = (Math.random() - 0.5) * 40;
-        const dx3 = (Math.random() - 0.5) * 60;
-        const dx4 = (Math.random() - 0.5) * 80;
-        const dy1 = -(Math.random() * 10 + 15);
-        const dy2 = -(Math.random() * 20 + 50);
-        const dy3 = -(Math.random() * 25 + 90);
-        const dy4 = -(Math.random() * 30 + 130);
+        const size = Math.random() * 18 + 36;
+        const stagger = i * 0.15;
+        const driftX = (Math.random() - 0.5) * 55;
+        const riseY = Math.random() * 35 + 110;
         b.style.cssText = [
             `width:${size}px`,
             `height:${size}px`,
             `left:${e.clientX}px`,
             `top:${e.clientY}px`,
-            `--dx0:${(Math.random() - 0.5) * 10}px`,
-            `--dy0:${(Math.random() - 0.5) * 10}px`,
-            `--dx1:${dx1}px`,
-            `--dy1:${dy1}px`,
-            `--dx2:${dx2}px`,
-            `--dy2:${dy2}px`,
-            `--dx3:${dx3}px`,
-            `--dy3:${dy3}px`,
-            `--dx4:${dx4}px`,
-            `--dy4:${dy4}px`,
+            `--drift-x:${driftX}px`,
+            `--rise-y:${riseY}px`,
             `animation-delay:${stagger}s`
         ].join(';');
         document.body.appendChild(b);
-        setTimeout(() => b.remove(), (stagger + 2.3) * 1000);
+        setTimeout(() => b.remove(), (stagger + 2.4) * 1000);
     }
 });
+
